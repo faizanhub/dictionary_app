@@ -124,7 +124,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
 
             ///Text Widget //word
             Text(
-              'Word : $searchingWord',
+              wordInstance != null ? 'Word : ${wordInstance!.word}' : '',
               style: wordTextStyle,
             ),
 
@@ -132,10 +132,11 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
 
             ///Text Widget //word
             SizedBox(
-              height: 400,
+              height: 250,
               width: double.infinity,
               child: !isLoading
                   ? Card(
+                      elevation: 20,
                       color: Color(0xff19272d),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
