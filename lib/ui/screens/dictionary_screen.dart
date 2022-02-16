@@ -3,6 +3,7 @@ import 'package:dictionary_app/constants/error_strings.dart';
 import 'package:dictionary_app/constants/text_styles.dart';
 import 'package:dictionary_app/core/models/word.dart';
 import 'package:dictionary_app/core/services/dictionary_service.dart';
+import 'package:dictionary_app/ui/custom_widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryScreen extends StatefulWidget {
@@ -34,7 +35,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
       isLoading = true;
     });
 
-    ///main handling
+    ///main handling of function
     try {
       wordInstance = await dictionaryService.getData(searchingWord);
     } catch (e) {
@@ -65,7 +66,6 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
         title: Text(
           AppStrings.appBarText,
         ),
-        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -83,21 +83,14 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
                 ),
                 SizedBox(width: 20),
                 Expanded(
-                  child: TextField(
+                  child: CustomTextField(
                     controller: textEditingController,
                     onChanged: (value) {
                       setState(() {
                         searchingWord = value;
                       });
                     },
-                    decoration: InputDecoration(
-                      hintText: AppStrings.hintText,
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
+                    hintText: AppStrings.hintText,
                   ),
                 )
               ],
