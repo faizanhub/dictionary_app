@@ -1,5 +1,8 @@
 import 'package:dictionary_app/constants/app_strings.dart';
+import 'package:dictionary_app/constants/error_strings.dart';
 import 'package:dictionary_app/constants/text_styles.dart';
+import 'package:dictionary_app/core/models/word.dart';
+import 'package:dictionary_app/core/services/dictionary_service.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryScreen extends StatefulWidget {
@@ -12,7 +15,46 @@ class DictionaryScreen extends StatefulWidget {
 }
 
 class _DictionaryScreenState extends State<DictionaryScreen> {
-  String word = '';
+  String searchingWord = '';
+  DictionaryService dictionaryService = DictionaryService();
+  Word? wordInstance;
+
+  bool isLoading = false;
+
+  TextEditingController textEditingController = TextEditingController();
+
+  void handleSearchWord() async {
+    if (searchingWord.isEmpty) {
+      wordInstance!.meaning = '';
+      updateUi();
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    ///main handling
+    try {
+      wordInstance = await dictionaryService.getData(searchingWord);
+    } catch (e) {
+      print('${ErrorStrings.invalidData}');
+
+      wordInstance!.meaning = AppStrings.invalidWord;
+    }
+
+    if (wordInstance != null) {
+      textEditingController.clear();
+      updateUi();
+    }
+  }
+
+  void updateUi() {
+    setState(() {
+      searchingWord = '';
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +84,10 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
                 SizedBox(width: 20),
                 Expanded(
                   child: TextField(
+                    controller: textEditingController,
                     onChanged: (value) {
                       setState(() {
-                        word = 'Word : ' + value;
+                        searchingWord = value;
                       });
                     },
                     decoration: InputDecoration(
@@ -67,7 +110,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: handleSearchWord,
                   child: Icon(
                     Icons.search_outlined,
                     color: Colors.white,
@@ -86,10 +129,38 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
               thickness: 1.5,
             ),
 
-            ///Text Widget
+            ///Text Widget //word
             Text(
-              '$word',
+              'Word : $searchingWord',
               style: wordTextStyle,
+            ),
+
+            SizedBox(height: 10),
+
+            ///Text Widget //word
+            SizedBox(
+              height: 400,
+              width: double.infinity,
+              child: !isLoading
+                  ? Card(
+                      color: Color(0xff19272d),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 10),
+                        child: Text(
+                          wordInstance != null
+                              ? '${wordInstance!.meaning}'
+                              : '',
+                          style: wordTextStyle.copyWith(
+                              fontSize: 25, color: Colors.white60),
+                        ),
+                      ),
+                    )
+                  : Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                    ),
             ),
           ],
         ),
