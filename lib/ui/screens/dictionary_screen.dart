@@ -4,6 +4,7 @@ import 'package:dictionary_app/constants/text_styles.dart';
 import 'package:dictionary_app/core/models/word.dart';
 import 'package:dictionary_app/core/services/dictionary_service.dart';
 import 'package:dictionary_app/ui/custom_widgets/custom_textfield.dart';
+import 'package:dictionary_app/ui/screens/audio_screen.dart';
 import 'package:flutter/material.dart';
 
 class DictionaryScreen extends StatefulWidget {
@@ -55,6 +56,13 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
       searchingWord = '';
       isLoading = false;
     });
+  }
+
+  void handleIconPress() {
+    if (wordInstance != null) {
+      Navigator.pushNamed(context, AudioScreen.routeName,
+          arguments: wordInstance!.audioUrl);
+    }
   }
 
   @override
@@ -139,14 +147,25 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
                       elevation: 20,
                       color: Color(0xff19272d),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 10),
-                        child: Text(
-                          wordInstance != null
-                              ? '${wordInstance!.meaning}'
-                              : '',
-                          style: wordTextStyle.copyWith(
-                              fontSize: 25, color: Colors.white60),
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              wordInstance != null
+                                  ? '${wordInstance!.meaning}'
+                                  : '',
+                              style: wordTextStyle.copyWith(
+                                  fontSize: 25, color: Colors.white60),
+                            ),
+                            IconButton(
+                              onPressed: handleIconPress,
+                              icon: Icon(Icons.volume_up_outlined),
+                              color: theme.iconTheme.color,
+                              iconSize: 30,
+                            ),
+                          ],
                         ),
                       ),
                     )
