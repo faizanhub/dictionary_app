@@ -32,13 +32,13 @@ class DictionaryService {
     final startWithAlphabetsOnly = RegExp(r'^[A-Za-z]');
 
     if (audioFileName.isEmpty) {
-      throw new Exception(ErrorStrings.invalidAudioFile);
+      throw Exception(ErrorStrings.invalidAudioFile);
     }
 
-    if (audioFileName.startsWith('gg')) {
-      folderName = 'gg';
-    } else if (audioFileName.startsWith('bix')) {
+    if (audioFileName.startsWith('bix')) {
       folderName = 'bix';
+    } else if (audioFileName.startsWith('gg')) {
+      folderName = 'gg';
     } else if (!startWithAlphabetsOnly.hasMatch(audioFileName)) {
       folderName = '_';
     } else {
@@ -46,5 +46,7 @@ class DictionaryService {
     }
 
     return '${Configs.audioBaseUrl}${folderName}/${audioFileName}${Configs.audioFileExtension}';
+
+    ///base_url [subdirectory]/[base filename].[format]
   }
 }

@@ -24,6 +24,7 @@ class _AudioScreenState extends State<AudioScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('Helllllloooo' + widget.audioUrl);
     var theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(

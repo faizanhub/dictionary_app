@@ -62,6 +62,12 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
     if (wordInstance != null) {
       Navigator.pushNamed(context, AudioScreen.routeName,
           arguments: wordInstance!.audioUrl);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please search some word'),
+        ),
+      );
     }
   }
 
@@ -159,12 +165,14 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
                               style: wordTextStyle.copyWith(
                                   fontSize: 25, color: Colors.white60),
                             ),
-                            IconButton(
-                              onPressed: handleIconPress,
-                              icon: Icon(Icons.volume_up_outlined),
-                              color: theme.iconTheme.color,
-                              iconSize: 30,
-                            ),
+                            wordInstance != null
+                                ? IconButton(
+                                    onPressed: handleIconPress,
+                                    icon: Icon(Icons.volume_up_outlined),
+                                    color: theme.iconTheme.color,
+                                    iconSize: 30,
+                                  )
+                                : SizedBox(),
                           ],
                         ),
                       ),
