@@ -112,7 +112,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
 
             SizedBox(height: 10),
 
-            ///Button
+            ///Search Button
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

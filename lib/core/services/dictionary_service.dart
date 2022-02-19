@@ -46,7 +46,5 @@ class DictionaryService {
     }
 
     return '${Configs.audioBaseUrl}${folderName}/${audioFileName}${Configs.audioFileExtension}';
-
-    ///base_url [subdirectory]/[base filename].[format]
   }
 }
