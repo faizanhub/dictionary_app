@@ -1,16 +1,11 @@
 # dictionary_app
 
-A new Flutter project.
 
-## Getting Started
+## App Screenshots:
 
-This project is a starting point for a Flutter application.
+![WhatsApp Image 2022-05-17 at 4 44 21 PM](https://user-images.githubusercontent.com/38282882/168803549-2eaa0a6a-ff7c-49f1-af84-d836fb801dc8.jpeg)
 
-A few resources to get you started if this is your first Flutter project:
+![WhatsApp Image 2022-05-17 at 4 44 20 PM (1)](https://user-images.githubusercontent.com/38282882/168803554-12aabc83-093e-4e0a-ad9e-179f10327515.jpeg)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![WhatsApp Image 2022-05-17 at 4 44 20 PM](https://user-images.githubusercontent.com/38282882/168803562-53161ffc-df4d-4eb0-8521-c13a8b694c4a.jpeg)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
