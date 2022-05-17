@@ -1,5 +1,6 @@
 # dictionary_app
 
+Application developed using rest api to get the meaning of a word with audio feature.
 
 ## App Screenshots:
 
