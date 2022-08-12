@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-TextStyle appBarTitleTextStyle = TextStyle(
+TextStyle appBarTitleTextStyle = const TextStyle(
   color: Colors.white,
   fontSize: 30,
 );
 
-TextStyle wordTextStyle = TextStyle(
+TextStyle wordTextStyle = const TextStyle(
   color: Colors.white,
   fontSize: 30,
 );

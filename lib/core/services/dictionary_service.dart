@@ -25,6 +25,7 @@ class DictionaryService {
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }
+    return null;
   }
 
   String getAudioUrl(String audioFileName) {
@@ -45,6 +46,6 @@ class DictionaryService {
       folderName = audioFileName[0];
     }
 
-    return '${Configs.audioBaseUrl}${folderName}/${audioFileName}${Configs.audioFileExtension}';
+    return '${Configs.audioBaseUrl}$folderName/$audioFileName${Configs.audioFileExtension}';
   }
 }

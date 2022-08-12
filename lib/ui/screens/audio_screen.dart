@@ -27,7 +27,7 @@ class _AudioScreenState extends State<AudioScreen> {
     var theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('${AppStrings.audioAppBarText}'),
+        title: const Text(AppStrings.audioAppBarText),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -41,12 +41,12 @@ class _AudioScreenState extends State<AudioScreen> {
                   await player.setUrl(widget.audioUrl);
                   await player.play();
                 },
-                icon: Icon(Icons.play_arrow),
+                icon: const Icon(Icons.play_arrow),
                 color: theme.iconTheme.color,
                 iconSize: theme.iconTheme.size!,
               ),
               Text(
-                '${AppStrings.play}',
+                AppStrings.play,
                 style: theme.textTheme.headline1,
               ),
             ],

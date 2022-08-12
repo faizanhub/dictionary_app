@@ -5,7 +5,7 @@ class CustomTextField extends StatelessWidget {
   final Function(String)? onChanged;
   final String? hintText;
 
-  CustomTextField({
+  const CustomTextField({
     this.controller,
     this.onChanged,
     this.hintText,

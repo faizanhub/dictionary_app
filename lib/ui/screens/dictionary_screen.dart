@@ -40,7 +40,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
     try {
       wordInstance = await dictionaryService.getData(searchingWord);
     } catch (e) {
-      print('${ErrorStrings.invalidData}');
+      print(ErrorStrings.invalidData);
 
       wordInstance!.meaning = AppStrings.invalidWord;
     }
@@ -64,7 +64,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
           arguments: wordInstance!.audioUrl);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Please search some word'),
         ),
       );
@@ -77,7 +77,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           AppStrings.appBarText,
         ),
       ),
@@ -89,13 +89,13 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
             ///Row of Icons and TextField
             Row(
               children: [
-                SizedBox(width: 5),
-                Icon(
+                const SizedBox(width: 5),
+                const Icon(
                   Icons.spellcheck_outlined,
                   color: Colors.white,
                   size: 40,
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Expanded(
                   child: CustomTextField(
                     controller: textEditingController,
@@ -110,7 +110,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
               ],
             ),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             ///Search Button
             Row(
@@ -118,20 +118,20 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
               children: [
                 ElevatedButton(
                   onPressed: handleSearchWord,
-                  child: Icon(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.amber),
+                  ),
+                  child: const Icon(
                     Icons.search_outlined,
                     color: Colors.white,
                     size: 28,
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.amber),
                   ),
                 ),
               ],
             ),
 
             ///Divider
-            Divider(
+            const Divider(
               color: Colors.amber,
               thickness: 1.5,
             ),
@@ -142,7 +142,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
               style: wordTextStyle,
             ),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             ///Text Widget //word
             SizedBox(
@@ -151,7 +151,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
               child: !isLoading
                   ? Card(
                       elevation: 20,
-                      color: Color(0xff19272d),
+                      color: const Color(0xff19272d),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
@@ -159,25 +159,23 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              wordInstance != null
-                                  ? '${wordInstance!.meaning}'
-                                  : '',
+                              wordInstance != null ? wordInstance!.meaning : '',
                               style: wordTextStyle.copyWith(
                                   fontSize: 25, color: Colors.white60),
                             ),
                             wordInstance != null
                                 ? IconButton(
                                     onPressed: handleIconPress,
-                                    icon: Icon(Icons.volume_up_outlined),
+                                    icon: const Icon(Icons.volume_up_outlined),
                                     color: theme.iconTheme.color,
                                     iconSize: 30,
                                   )
-                                : SizedBox(),
+                                : const SizedBox(),
                           ],
                         ),
                       ),
                     )
-                  : Center(
+                  : const Center(
                       child: CircularProgressIndicator(
                         color: Colors.white,
                       ),

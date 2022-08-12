@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 
 abstract class MyRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-
     switch (settings.name) {
       case DictionaryScreen.routeName:
-        return MaterialPageRoute(builder: (_) => DictionaryScreen());
+        return MaterialPageRoute(builder: (_) => const DictionaryScreen());
 
       case AudioScreen.routeName:
         final args = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => AudioScreen(audioUrl: args,));
+        return MaterialPageRoute(
+            builder: (_) => AudioScreen(
+                  audioUrl: args,
+                ));
 
       default:
-        return MaterialPageRoute(builder: (_) => DictionaryScreen());
+        return MaterialPageRoute(builder: (_) => const DictionaryScreen());
     }
   }
 }
